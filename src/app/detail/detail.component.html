@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+    <ul>
+        <li>Nombre: {{details.product.name}}</li>
+        <li>Categoria: {{details.product.category}}</li>
+        <li>Fecha: {{details.product.date}}</li>
+        <li>Estado: {{details.product.fresh}}</li>
+        <li>Precio: {{details.product.price}}</li>
+        <li>Comentario: {{details.product.comment}}</li>
+    </ul>
+</div>
+<div mat-dialog-actions [align]="'end'" *ngIf="!details.delete">
+    <button mat-raised-button (click)="deleteProduct()"  >Delete</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

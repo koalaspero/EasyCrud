@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formDB.form">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="name" placeholder="Product">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Product Category</mat-label>
+            <mat-select formControlName="category">
+                <mat-option value="Fruits">Fruits</mat-option>
+                <mat-option value="Vegetables">Vegetables</mat-option>
+                <mat-option value="Electronics">Electronics</mat-option>
+              </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Choose Date</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+        <br/>
+        <mat-radio-group aria-label="Select an option" formControlName="fresh" class="example-radio-group">
+            <mat-radio-button  class="example-radio-button" *ngFor="let fresh of freshList" [value]="fresh"> 
+                {{fresh}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="$00.00" type="number" formControlName="price">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Comment</mat-label>
+            <textarea matInput formControlName="comment"></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button (click)="addProduct()" [disabled]="this.formDB.form.invalid">{{actionBtn}}</button>
+    <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+</div>
